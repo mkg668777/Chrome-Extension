@@ -1,0 +1,27 @@
+body {
+    width: 250px; /* Slightly wider */
+    padding: 15px; /* More padding */
+    font-family: 'Arial', sans-serif; /* A more common font */
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Darker text */
+  }
+  
+  .h1 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #007bff; /* Blue heading */
+    text-align: center;
+  }
+  
+  .p {
+    font-size: 1em;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+  }
