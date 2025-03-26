@@ -25,6 +25,34 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
+
+
+
+
+function processCommand(text) {
+  let response = "";
+  text = text.toLowerCase();
+  
+  if (text.includes("open google")) {
+    window.open("https://www.google.com", "_blank");
+    response = "Opening Google...";
+  } else if (text.includes("search for ")) {
+    let query = text;
+    window.open(`https://www.google.com/search?q=${query}`, "_blank");
+    response = `Searching for: ${query}`;
+  } else if (text.includes("change background")) {
+    document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    response = "Background color changed!";
+  } 
+  else {
+    showPopup(text);
+  }
+  
+}
+
+
+
+
 function toggleSpeechRecognition() {
   if (!btnBQ.hasAttribute("listening")) {
     btnBQ.setAttribute("listening", "true");
@@ -34,9 +62,15 @@ function toggleSpeechRecognition() {
     btnBQ.removeAttribute("listening");
     speechRecognition.stop();
     btnBQ.style.backgroundColor = "turquoise";
-    showPopup(transcript);
+    processCommand(transcript);
   }
 }
+
+
+
+
+
+
 
 function showPopup(text) {
   alert("You said: " + text);
