@@ -1,46 +1,43 @@
 let body = document.querySelector("body");
 
 let btnBQ = document.createElement("button");
-btnqBQ.setAttribute("id", "btnBQ");
-btnBQ.addEventListener("click", doSomething);
+btnBQ.setAttribute("id", "btnBQ");
+btnBQ.textContent = "🎤"; // Mic icon for better UI
+btnBQ.addEventListener("click", toggleSpeechRecognition);
 body.appendChild(btnBQ);
 
-
-let speechRecognition = new webkitSpeechRecognition();
+let speechRecognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 speechRecognition.continuous = true;
 speechRecognition.interimResults = true;
 speechRecognition.lang = "en-US";
 
 let transcript = "";
 speechRecognition.onresult = function(event) {
-  transcript ="";
+  transcript = "";
   for (let i = event.resultIndex; i < event.results.length; i++) {
     transcript += event.results[i][0].transcript;
   }
-}
+};
 
-document.addEventListener("keypress", handlekbd);
+document.addEventListener("keydown", function(event) {
+  if (event.shiftKey && event.code === "KeyQ") {
+    toggleSpeechRecognition();
+  }
+});
 
-function handlekbd(event) {
- if (event.shifkey && event.code ==="keyQ") {
-   btnQurious.click();
- }
-}
-
-function doSomething() {
-  if(btnBQ.hasAttribute("listening") === false) {
-    btnBQ.setAttribute("listening", true);
+function toggleSpeechRecognition() {
+  if (!btnBQ.hasAttribute("listening")) {
+    btnBQ.setAttribute("listening", "true");
     speechRecognition.start();
+    btnBQ.style.backgroundColor = "red";
   } else {
     btnBQ.removeAttribute("listening");
     speechRecognition.stop();
-    debugger;
-    const myPopup = new Popup({
-      id: "myPopup",
-      title: "Here is what you said",
-      content: transcript,
-    })
-    myPopup.show();
-  } 
-  
+    btnBQ.style.backgroundColor = "turquoise";
+    showPopup(transcript);
+  }
+}
+
+function showPopup(text) {
+  alert("You said: " + text);
 }
