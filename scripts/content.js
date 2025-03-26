@@ -1,7 +1,7 @@
 let body = document.querySelector("body");
 
 let btnBQ = document.createElement("button");
-btnqBQ.setAttributr("id", "btnBQ");
+btnqBQ.setAttribute("id", "btnBQ");
 btnBQ.addEventListener("click", doSomething);
 body.appendChild(btnBQ);
 
