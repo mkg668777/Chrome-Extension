@@ -49,15 +49,23 @@ if (!window.SpeechRecognition) {
     });
 
     function processCommand(text) {
+        console.log('Processing command:', text);
         text = text.toLowerCase().trim();
-        if (text.includes("open google")) {
+        console.log('Normalized text:', text);
+        
+        if (text.includes("google")) {
+            console.log('Command matched: Opening Google');
             window.open("https://www.google.com", "_blank");
         } else if (text.includes("search for")) {
+            console.log('Command matched: Performing search');
             let query = text.replace("search for", "").trim();
+            console.log('Search query:', query);
             window.open(`https://www.google.com/search?q=${query}`, "_blank");
         } else if (text.includes("change background")) {
+            console.log('Command matched: Changing background color');
             document.body.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         } else {
+            console.log('No matching command found');
             alert("You said: " + text);
         }
     }
