@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Hello World Extension",
+  "name": "Voice Command Extension",
   "version": "1.0",
-  "description": "A simple Chrome extension that says hello.",
+  "description": "A simple Chrome extension for voice commands.",
   "icons": {
     "16": "icons/icon16.jpg",
     "48": "icons/icon48.jpg",
@@ -14,5 +14,14 @@
       "css": ["scripts/content.css"],
       "matches": ["*://*/*"]
     }
-  ]
+  ],
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.jpg",
+      "48": "icons/icon48.jpg",
+      "128": "icons/icon128.jpg"
+    }
+  }
 }
